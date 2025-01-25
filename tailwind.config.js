@@ -4,8 +4,8 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        'hero-pattern': "url('thumbnail/hero-thumb.jpg')",
-        'footer-pattern': "url('thumbnail/footer-thumb.jpg')",
+        'hero-pattern': "url('public/thumbnail/hero-thumb.jpg')",
+        'footer-pattern': "url('public/thumbnail/footer-thumb.jpg')",
       }
     },
   },
