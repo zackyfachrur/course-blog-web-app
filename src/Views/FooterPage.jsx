@@ -4,7 +4,7 @@ const FooterPages = () => {
   return (
     <>
       <footer className="flex flex-col items-center justify-center mt-24">
-        <div className="bg-[url(/thumbnail/hero-thumb.jpg)] w-[80%] h-[40vh] rounded-xl flex justify-center items-center text-white flex-col drop-shadow-md">
+        <div className="bg-footer-pattern w-[80%] h-[40vh] rounded-xl flex justify-center items-center text-white flex-col drop-shadow-md">
           <h1 className="text-2xl font-semibold text-yellow-500 uppercase drop-shadow-md">
             Newsletter
           </h1>
