@@ -1,14 +1,11 @@
 import FooterLogo from "../assets/img/Navbar-Logo.png";
-import FooterThumb from "../assets/img/footer-thumb.jpg";
 
 const FooterMobilePages = () => {
   return (
     <>
       <footer className="flex flex-col items-center justify-center px-4 mt-24">
         {/* Newsletter Section */}
-        <div
-          className={`bg-[url('${FooterThumb}')] w-full sm:w-[80%] h-[50vh] sm:h-[40vh] rounded-xl flex justify-center items-center text-white flex-col drop-shadow-md`}
-        >
+        <div className="bg-footer-pattern w-full sm:w-[80%] h-[50vh] sm:h-[40vh] rounded-xl flex justify-center items-center text-white flex-col drop-shadow-md">
           <h1 className="text-xl font-semibold text-yellow-500 uppercase sm:text-2xl drop-shadow-md">
             Newsletter
           </h1>
