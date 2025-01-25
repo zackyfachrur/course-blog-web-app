@@ -1,12 +1,8 @@
-import HeroThumb from "../assets/img/hero-thumb.jpg";
-
 const HeroSectionMobiles = () => {
   return (
     <>
       <section className="flex items-center justify-center pt-14">
-        <div
-          className={`bg-[url('${HeroThumb}')] w-[90%] h-[400px] bg-cover object-center flex justify-center items-center flex-col rounded-xl mt-12`}
-        >
+        <div className="bg-hero-pattern w-[90%] h-[400px] bg-cover object-center flex justify-center items-center flex-col rounded-xl mt-12">
           <h1 className="text-2xl font-bold text-white w-[90%] text-center">
             Revolusi Pembelajaran: Temukan Ilmu Baru melalui Platform Video
             Interaktif!
