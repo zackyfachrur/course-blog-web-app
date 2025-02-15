@@ -128,7 +128,7 @@ const FooterMobilePages = () => {
         {/* Footer Copyright Section */}
         <div className="flex items-center justify-center w-full bg-white border-t-2">
           <h2 className="w-full p-8 font-semibold text-center text-gray-500">
-            ©2023 Gerobak Sayur All Rights Reserved.
+            © {new Date().getFullYear()} Zacky Fachrur All Rights Reserved.
           </h2>
         </div>
       </footer>
