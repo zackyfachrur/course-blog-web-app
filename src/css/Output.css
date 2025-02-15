@@ -938,12 +938,12 @@ video {
   background-color: rgb(250 204 21 / var(--tw-bg-opacity, 1));
 }
 
-.bg-footer-pattern {
-  background-image: url('thumbnail/footer-thumb.jpg');
+.bg-\[url\(\'\/thumbnail\/footer-thumb\.jpg\'\)\] {
+  background-image: url('/thumbnail/footer-thumb.jpg');
 }
 
-.bg-hero-pattern {
-  background-image: url('thumbnail/hero-thumb.jpg');
+.bg-\[url\(\'\/thumbnail\/hero-thumb\.jpg\'\)\] {
+  background-image: url('/thumbnail/hero-thumb.jpg');
 }
 
 .bg-cover {
@@ -1029,10 +1029,6 @@ video {
 .py-4 {
   padding-top: 1rem;
   padding-bottom: 1rem;
-}
-
-.pt-14 {
-  padding-top: 3.5rem;
 }
 
 .text-center {

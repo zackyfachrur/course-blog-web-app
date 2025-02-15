@@ -9,6 +9,8 @@ import HomePages from "./Views/HomePage";
 import CreatePostingans from "./Service/CreatePostingan";
 import EditPostingans from "./Service/EditPostingan";
 import "../node_modules/remixicon/fonts/remixicon.css";
+import { store } from "./Store/Store";
+import { Provider } from "react-redux";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +34,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </StrictMode>
 );

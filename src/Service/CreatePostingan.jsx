@@ -1,7 +1,9 @@
 /* eslint-disable react/prop-types */
 import Thumb from "/thumbnail/video-thumb-4.jpg";
 import { useState } from "react";
-import axios from "axios";
+// import axios from "axios";
+import { useDispatch } from "react-redux";
+import { addVideo } from "../Store/SliceAPI";
 
 const Label = ({ content, target }) => {
   return (
@@ -18,15 +20,23 @@ const CreatePostingans = () => {
   const [deskripsi, setDeskripsi] = useState("");
   const [kategori, setKategori] = useState("");
   const [harga, setHarga] = useState("");
+  const dispatch = useDispatch();
 
   const postData = (e) => {
     e.preventDefault();
-    axios.post("https://6793cb9d5eae7e5c4d8fead7.mockapi.io/api/article", {
+
+    const newVideo = {
       judul,
       deskripsi,
       kategori,
       harga,
-    });
+    };
+
+    dispatch(addVideo(newVideo));
+
+    setTimeout(() => {
+      window.location.assign("/");
+    }, 500);
   };
 
   return (
@@ -68,8 +78,8 @@ const CreatePostingans = () => {
               {/* End Input */}
 
               {/* Radio Wrapper */}
-              <h2 className="text-2xl font-semibold mt-4">Kategori Materi</h2>
-              <div className="flex flex-row mb-4 gap-2">
+              <h2 className="mt-4 text-2xl font-semibold">Kategori Materi</h2>
+              <div className="flex flex-row gap-2 mb-4">
                 <ul className="flex gap-2">
                   <li
                     className={
