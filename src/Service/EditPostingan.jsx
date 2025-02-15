@@ -1,7 +1,9 @@
 /* eslint-disable react/prop-types */
 import Thumb from "/thumbnail/video-thumb-4.jpg";
 import { useEffect, useState } from "react";
-import axios from "axios";
+// import axios from "axios";
+import { useDispatch } from "react-redux";
+import { editVideo, deleteVideo } from "../Store/SliceAPI";
 
 const Label = ({ content, target }) => {
   return (
@@ -14,19 +16,19 @@ const Label = ({ content, target }) => {
 const DeleteValidation = ({ onCancel, onAccept }) => {
   return (
     <div className="absolute z-50 bg-white h-[50%] drop-shadow-md rounded-3xl w-[50%] flex justify-center items-center flex-col gap-4">
-      <div className="flex justify-center items-center flex-col">
+      <div className="flex flex-col items-center justify-center">
         <h2 className="text-2xl font-bold">Delete Data</h2>
         <p>Are you sure want to delete data?</p>
       </div>
       <div className="flex gap-2">
         <button
-          className="bg-green-500 px-5 py-2 rounded-xl text-white font-bold hover:bg-green-600"
+          className="px-5 py-2 font-bold text-white bg-green-500 rounded-xl hover:bg-green-600"
           onClick={onAccept}
         >
           Yes
         </button>
         <button
-          className="bg-red-500 px-5 py-2 rounded-xl text-white font-bold hover:bg-red-600"
+          className="px-5 py-2 font-bold text-white bg-red-500 rounded-xl hover:bg-red-600"
           onClick={onCancel}
         >
           No
@@ -43,6 +45,7 @@ const EditPostingans = () => {
   const [kategori, setKategori] = useState("");
   const [harga, setHarga] = useState("");
   const [id, setID] = useState(null);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setID(localStorage.getItem("ID"));
@@ -52,33 +55,24 @@ const EditPostingans = () => {
     setHarga(localStorage.getItem("Harga"));
   }, []);
 
-  const getData = () => {
-    axios
-      .get("https://6793cb9d5eae7e5c4d8fead7.mockapi.io/api/article")
-      .then((response) => console.log(response.data));
+  const updateData = (e) => {
+    e.preventDefault();
+    const updatedData = { judul, deskripsi, kategori, harga };
+
+    dispatch(editVideo({ id, ...updatedData }));
+
+    setTimeout(() => {
+      window.location.assign("/");
+    }, 1000);
   };
 
-  const deleteData = (id) => {
-    axios
-      .delete(`https://6793cb9d5eae7e5c4d8fead7.mockapi.io/api/article/${id}`)
-      .then(() => {
-        getData();
-        setShowDelete(false); // Menutup modal setelah delete berhasil
-      });
+  const deleteData = () => {
+    dispatch(deleteVideo(id));
+    setShowDelete(false);
 
     setTimeout(() => {
       window.location.assign("/");
     }, 500);
-  };
-
-  const updateData = (e) => {
-    e.preventDefault();
-    axios.put(`https://6793cb9d5eae7e5c4d8fead7.mockapi.io/api/article/${id}`, {
-      judul,
-      deskripsi,
-      kategori,
-      harga,
-    });
   };
 
   return (
@@ -115,8 +109,8 @@ const EditPostingans = () => {
               onChange={(e) => setDeskripsi(e.target.value)}
             />
 
-            <h2 className="text-2xl font-semibold mt-4">Kategori Materi</h2>
-            <div className="flex flex-row mb-4 gap-2">
+            <h2 className="mt-4 text-2xl font-semibold">Kategori Materi</h2>
+            <div className="flex flex-row gap-2 mb-4">
               <ul className="flex gap-2">
                 {["pemasaran", "pengembanganDiri", "desain", "bisnis"].map(
                   (cat) => (
@@ -167,7 +161,7 @@ const EditPostingans = () => {
           {showDelete && (
             <DeleteValidation
               onCancel={() => setShowDelete(false)}
-              onAccept={() => deleteData(id)}
+              onAccept={deleteData}
             />
           )}
         </form>

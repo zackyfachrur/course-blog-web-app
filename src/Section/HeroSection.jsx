@@ -2,7 +2,7 @@ const HeroSections = () => {
   return (
     <>
       <section className="flex items-center justify-center">
-        <div className="bg-hero-pattern w-[80%] h-[500px] bg-cover object-center flex justify-center items-center flex-col rounded-xl mt-20">
+        <div className="bg-[url('/thumbnail/hero-thumb.jpg')] w-[80%] h-[500px] bg-cover object-center flex justify-center items-center flex-col rounded-xl mt-20">
           <h1 className="text-6xl font-bold text-white w-[80%] text-center">
             Revolusi Pembelajaran: Temukan Ilmu Baru melalui Platform Video
             Interaktif!

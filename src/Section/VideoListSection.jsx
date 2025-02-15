@@ -1,40 +1,28 @@
 import { useState, useEffect } from "react";
 // import VideoCardData from "../json/VideoCardData.json";
-import axios from "axios";
+// import axios from "axios";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchVideos } from "../Store/SliceAPI";
 
 const VideoListSections = () => {
   // const [data, setData] = useState([]);
   const [category, setCategory] = useState("");
+  const dispatch = useDispatch();
+  const { data } = useSelector((state) => state.videos);
 
-  // useEffect(() => {
-  //   const mappedData = VideoCardData.map((item) => ({
-  //     img: item.img,
-  //     category: item.category,
-  //     profile: item.profile,
-  //     userName: item.userName,
-  //     userRole: item.userRole,
-  //     name: item.name,
-  //     desc: item.description,
-  //   }));
-  //   setData(mappedData);
-  // }, []);
-
-  const [APIData, setAPIData] = useState([]);
   useEffect(() => {
-    axios
-      .get("https://6793cb9d5eae7e5c4d8fead7.mockapi.io/api/article")
-      .then((response) => setAPIData(response.data));
-  }, []);
+    dispatch(fetchVideos());
+  }, [dispatch]);
 
-  const setData = (data) => {
-    let { id, judul, deskripsi, kategori, harga } = data;
-    localStorage.setItem("ID", id);
-    localStorage.setItem("Judul", judul);
-    localStorage.setItem("Deskripsi", deskripsi);
-    localStorage.setItem("Kategori", kategori);
-    localStorage.setItem("Harga", harga);
+  const saveToLocalStorage = (video) => {
+    localStorage.setItem("ID", video.id);
+    localStorage.setItem("Judul", video.judul);
+    localStorage.setItem("Deskripsi", video.deskripsi);
+    localStorage.setItem("Kategori", video.kategori);
+    localStorage.setItem("Harga", video.harga);
   };
+
   const handleCategoryClick = (selectedCategory) => {
     setCategory(selectedCategory);
   };
@@ -105,44 +93,44 @@ const VideoListSections = () => {
           </div>
           <Link
             to="/edit-postingan"
-            className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            className="container grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
           >
-            {APIData.length > 0 ? (
-              APIData.filter(
-                (item) => category === "" || item.kategori === category
-              ).map((item, index) => (
-                <div
-                  key={index}
-                  className="flex flex-col items-start w-full p-6 gap-3 bg-white shadow-md rounded-xl hover:scale-90 cursor-pointer animate"
-                  onClick={() => setData(item)}
-                >
-                  <img
-                    src="thumbnail/video-thumb-1.jpg"
-                    alt="Course Thumbnail"
-                    className="object-cover w-full h-56 mb-4 rounded-md"
-                  />
-                  <h2 className="text-xl font-bold">
-                    {item.judul.length > 16
-                      ? item.judul.slice(0, 37) + "..."
-                      : item.judul}
-                  </h2>
-                  <i className="text-gray-500">Rp. {item.harga}</i>
-                  <p className="font-semibold text-gray-500">
-                    {item.deskripsi}
-                  </p>
-                  <div className="flex flex-row gap-4">
+            {data.length > 0 ? (
+              data
+                .filter((item) => category === "" || item.kategori === category)
+                .map((item, index) => (
+                  <div
+                    key={index}
+                    className="flex flex-col items-start w-full gap-3 p-6 bg-white shadow-md cursor-pointer rounded-xl hover:scale-90 animate"
+                    onClick={() => saveToLocalStorage(item)}
+                  >
                     <img
-                      src="thumbnail/profile-2.png"
-                      className="w-[12%] rounded-xl"
-                      alt="Profile Image"
+                      src="thumbnail/video-thumb-1.jpg"
+                      alt="Course Thumbnail"
+                      className="object-cover w-full h-56 mb-4 rounded-md"
                     />
-                    <div>
-                      <h2 className="font-semibold">Jenna Ortega</h2>
-                      <p>Senior Accountant di Gojek</p>
+                    <h2 className="text-xl font-bold">
+                      {item.judul.length > 16
+                        ? item.judul.slice(0, 37) + "..."
+                        : item.judul}
+                    </h2>
+                    <i className="text-gray-500">Rp. {item.harga}</i>
+                    <p className="font-semibold text-gray-500">
+                      {item.deskripsi}
+                    </p>
+                    <div className="flex flex-row gap-4">
+                      <img
+                        src="thumbnail/profile-2.png"
+                        className="w-[12%] rounded-xl"
+                        alt="Profile Image"
+                      />
+                      <div>
+                        <h2 className="font-semibold">Jenna Ortega</h2>
+                        <p>Senior Accountant di Gojek</p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))
+                ))
             ) : (
               <p className="text-lg text-gray-500">Loading...</p>
             )}

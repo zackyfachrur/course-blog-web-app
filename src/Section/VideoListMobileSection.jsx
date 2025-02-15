@@ -7,23 +7,10 @@ const VideoListSections = () => {
   // const [data, setData] = useState([]);
   const [category, setCategory] = useState("");
 
-  // useEffect(() => {
-  //   const mappedData = VideoCardData.map((item) => ({
-  //     img: item.img,
-  //     category: item.category,
-  //     profile: item.profile,
-  //     userName: item.userName,
-  //     userRole: item.userRole,
-  //     name: item.name,
-  //     desc: item.description,
-  //   }));
-  //   setData(mappedData);
-  // }, []);
-
   const [APIData, setAPIData] = useState([]);
   useEffect(() => {
     axios
-      .get("https://6793cb9d5eae7e5c4d8fead7.mockapi.io/api/article")
+      .get("https://6793cb9d5eae7e5c4d8fead7.mockapi.io/api/course-video")
       .then((response) => setAPIData(response.data));
   }, []);
 
@@ -42,7 +29,7 @@ const VideoListSections = () => {
   return (
     <>
       <section className="flex flex-col items-center justify-center gap-8 p-8 text-start">
-        <div className="flex flex-col gap-8 w-full max-w-screen-sm">
+        <div className="flex flex-col w-full max-w-screen-sm gap-8">
           <div className="flex flex-col self-start gap-2 p-8">
             <h2 className="text-4xl font-bold">
               Koleksi Video Pembelajaran Unggulan
@@ -107,7 +94,7 @@ const VideoListSections = () => {
           </div>
           <Link
             to="/edit-postingan"
-            className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            className="container grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
           >
             {APIData.length > 0 ? (
               APIData.filter(
@@ -115,7 +102,7 @@ const VideoListSections = () => {
               ).map((item, index) => (
                 <div
                   key={index}
-                  className="flex flex-col items-start w-full p-6 gap-3 bg-white shadow-md rounded-xl hover:scale-90 cursor-pointer animate"
+                  className="flex flex-col items-start w-full gap-3 p-6 bg-white shadow-md cursor-pointer rounded-xl hover:scale-90 animate"
                   onClick={() => setData(item)}
                 >
                   <img
