@@ -1,54 +1,54 @@
-# React + TypeScript + Vite
+## Baxaric LMS | Under Development
+Backend Services for Baxaric LMS Web Courses
+## Installation
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+#### 1. **Requirements**
+* Environment Variable
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+#### 2. **Clone** this repo
+```bash
+ git clone https://github.com/zackyfachrur/course-blog-web-app.git
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+#### 3. **Change Directory** to **Folder** and Open it on **Text Editor**
+```bash
+ cd course-blog-web-app
 ```
+```bash
+code .
+```
+
+#### 4. **Change Directory** to **Folder** and Open it on **Text Editor**
+#### Install using NPM
+```bash
+npm install
+```
+
+#### Install using BUN (Recommended)
+```bash
+bun install
+```
+
+#### 5. **Setup** Environment Variable
+```env
+VITE_API_PORT=YOUR_PORT
+VITE_PRODUCT_API_ENDPOINT=albums <--- API Endpoint for List of the Video
+VITE_AUTH_API_ENDPOINT=auth <--- API Endpoint for User Account Authentication
+```
+
+#### 7. **Run** the **project**
+#### Run Project using NPM
+```bash
+npm run dev
+```
+
+#### Run Project using BUN (Recommended)
+```bash
+bun run dev
+```
+
+## Feedback
+
+If you have any feedback, please reach out to me at mochzackyfa@gmail.com
+
