@@ -4,6 +4,7 @@ Backend Services for Baxaric LMS Web Courses
 
 #### 1. **Requirements**
 * Environment Variable
+* Backend API
 
 #### 2. **Clone** this repo
 ```bash
