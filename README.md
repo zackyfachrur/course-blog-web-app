@@ -1,5 +1,5 @@
 ## Baxaric LMS | Under Development
-Backend Services for Baxaric LMS Web Courses
+Frontend for Baxaric LMS Web Courses
 ## Installation
 
 #### 1. **Requirements**
