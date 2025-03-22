@@ -9,9 +9,11 @@ import { AuthRegister } from "@store/AuthAsyncThunk";
 import useHandlePhoneNumber from "@services/HandleInputNumber";
 import AccountSelection from "./AccountSelection";
 import PhoneNumber from "./PhoneNumber";
+import { useState } from "react";
 
 const RegisterForm = () => {
   const dispatch = useDispatch<AppDispatch>();
+  const [handlePhoneCode, setHandlePhoneCode] = useState<boolean>(false);
 
   const {
     togglePassword,
@@ -25,6 +27,10 @@ const RegisterForm = () => {
   const { handleCodeClick, handleInputNumber, phoneNumber } =
     useHandlePhoneNumber();
 
+  const handleMouseEnter = (e: React.MouseEvent<HTMLInputElement>) => {
+    const value = e.currentTarget.value; // Ambil nilai dari input
+    setHandlePhoneCode(value === ""); // Tampilkan kode negara hanya jika kosong
+  };
   const {
     register,
     handleSubmit,
@@ -93,13 +99,18 @@ const RegisterForm = () => {
         name="user_phone_number"
         register={register}
         icon={<i className="ri-smartphone-line px-2 py-2 font-semibold"></i>}
-        placeholder="misal: 628123456789"
+        placeholder="Nomor handphone kamu"
         error={errors.user_phone_number?.message}
         value={phoneNumber}
-        onChange={handleInputNumber}
+        onMouseEnter={handleMouseEnter} // Perbaikan event
+        onChange={handleInputNumber} // Perbaikan event
       />
-
-      <PhoneNumber onClick={handleCodeClick} />
+      {handlePhoneCode && (
+        <PhoneNumber
+          onClick={handleCodeClick}
+          onMouseLeave={() => setHandlePhoneCode(false)}
+        />
+      )}
 
       <InputField
         label="Password"

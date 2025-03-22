@@ -10,6 +10,7 @@ export interface InputFieldProps {
   placeholder?: string;
   name: keyof AccountData;
   value?: string;
+  onMouseEnter?: (e: React.MouseEvent<HTMLInputElement>) => void; // Perbaikan tipe event
   register: UseFormRegister<AccountData>;
   error?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;

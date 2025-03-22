@@ -11,6 +11,7 @@ const InputField: React.FC<InputFieldProps> = ({
   value,
   onChange,
   eye,
+  onMouseEnter,
 }) => {
   return (
     <div className="flex flex-col gap-2">
@@ -28,6 +29,7 @@ const InputField: React.FC<InputFieldProps> = ({
           type={type}
           onChange={onChange}
           placeholder={placeholder}
+          onMouseEnter={onMouseEnter}
           className="w-full py-2 bg-transparent outline-none"
         />
         {eye}

@@ -5,9 +5,13 @@ import { RootState, AppDispatch } from "@store/Store";
 
 interface CountryPhoneListProps {
   onClick: (code: string) => void;
+  onMouseLeave?: () => void;
 }
 
-const CountryPhoneList: React.FC<CountryPhoneListProps> = ({ onClick }) => {
+const CountryPhoneList: React.FC<CountryPhoneListProps> = ({
+  onClick,
+  onMouseLeave,
+}) => {
   const dispatch = useDispatch<AppDispatch>();
   const {
     data: countries,
@@ -23,7 +27,10 @@ const CountryPhoneList: React.FC<CountryPhoneListProps> = ({ onClick }) => {
   if (error) return <p className="text-red-500">Error: {error}</p>;
 
   return (
-    <div className="flex flex-col gap-2 h-[200px] overflow-y-scroll">
+    <div
+      className="flex flex-col gap-2 h-[200px] overflow-y-scroll absolute w-[220px] left-[39%] top-[53%]"
+      onMouseLeave={onMouseLeave}
+    >
       {countries.map((country, index) => (
         <div
           className="bg-gray-600 rounded-xl px-5 py-2 font-semibold cursor-pointer hover:bg-gray-500"
