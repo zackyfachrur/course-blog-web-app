@@ -6,21 +6,32 @@ const InputField: React.FC<InputFieldProps> = ({
   name,
   register,
   error,
+  placeholder,
+  icon,
+  value,
+  onChange,
   eye,
 }) => {
   return (
-    <div>
+    <div className="flex flex-col gap-2">
       <div className="flex justify-between">
-        <label htmlFor={name} className="text-gray-800 text-md font-medium">
+        <label htmlFor={name} className="text-md font-medium">
           {label}
         </label>
+      </div>
+      <div className="flex gap-1 items-center w-full bg-gray-600 rounded-md border border-gray-500 font-medium px-2">
+        {icon}
+        <input
+          {...register(name)}
+          id={name}
+          value={value}
+          type={type}
+          onChange={onChange}
+          placeholder={placeholder}
+          className="w-full py-2 bg-transparent outline-none"
+        />
         {eye}
       </div>
-      <input
-        {...register(name)}
-        type={type}
-        className="w-full p-2 rounded-md outline-none border-2 border-gray-300 font-medium"
-      />
       {error && <p className="text-red-500 text-sm font-medium">{error}</p>}
     </div>
   );
